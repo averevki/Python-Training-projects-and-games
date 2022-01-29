@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Aleksandr Verevkin
+# Quiz project with Object-Oriented Programing style
+
 from question_model import Question
 from data import question_data
 from quiz_brain import QuizBrain

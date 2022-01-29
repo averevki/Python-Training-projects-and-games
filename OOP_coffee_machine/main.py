@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Aleksandr Verevkin
+# Coffee machine project with Object-Oriented Programing style
+
 from menu import Menu, MenuItem
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
