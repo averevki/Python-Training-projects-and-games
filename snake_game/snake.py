@@ -14,6 +14,7 @@ class Snake:
         self.snake = []
         self.snake_segments = start_snake_parts
         self.game_state = True
+        self.game_reset = False
         self.start()
         self.head = self.snake[0]
 
@@ -27,6 +28,15 @@ class Snake:
             turtle.goto(x, y)
             x -= MOVE_DISTANCE
             self.snake.append(turtle)
+
+    def reset(self):
+        for seg in self.snake:
+            seg.goto(1000, 1000)
+        self.snake.clear()
+        self.snake_segments = DEFAULT_SNAKE_PARTS
+        self.game_state = True
+        self.start()
+        self.head = self.snake[0]
 
     def add_seg(self):
         """Add 1 snake element"""
@@ -66,11 +76,11 @@ class Snake:
 
     def check_game_over(self):
         """Check for any collisions"""
-        self.game_state = self.check_wall_collision() and self.check_seg_collision()
+        self.game_reset = self.check_wall_collision() and self.check_seg_collision()
 
     def check_wall_collision(self):
         """Check for collision with wall"""
-        return -280 < self.head.xcor() < 280 and -280 < self.head.ycor() < 280
+        return -290 < self.head.xcor() < 290 and -290 < self.head.ycor() < 290
 
     def check_seg_collision(self):
         """Check for collision with snake segment"""
@@ -78,3 +88,6 @@ class Snake:
             if self.head.distance(seg) < 10:
                 return False
         return True
+
+    def end_game(self):
+        self.game_state = False

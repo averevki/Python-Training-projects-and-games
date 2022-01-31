@@ -39,6 +39,7 @@ if __name__ == "__main__":
     screen.onkeypress(key="d", fun=snake.turn_right)
     screen.onkeypress(key="w", fun=snake.turn_up)
     screen.onkeypress(key="s", fun=snake.turn_down)
+    screen.onkeypress(key="Escape", fun=snake.end_game)
 
     scoreboard = Score()
     time.sleep(0.5)
@@ -47,11 +48,14 @@ if __name__ == "__main__":
         snake.game_on()
         time.sleep(SPEED)
         screen.update()
+
         if snake.head.distance(food) < 15:
             scoreboard.increase_score()
             snake.add_seg()
             food.refresh()
-        snake.check_game_over()
-    scoreboard.game_over()
 
-    screen.exitonclick()
+        snake.check_game_over()
+        if not snake.game_reset:
+            snake.reset()
+            scoreboard.reset()
+            time.sleep(1)
