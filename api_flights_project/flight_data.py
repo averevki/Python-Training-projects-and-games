@@ -10,6 +10,7 @@ class FlightData:
         self.cities_iata = []
 
     def get_iata(self, cities: list):
+        """Get city code"""
         for city in cities:
             params = {
                 "term": city

@@ -17,6 +17,7 @@ class DataManager:
             self.cities.append(line["city"])
 
     def add_iata(self, iata_codes: list):
+        """Add cities codes into sheet"""
         for index, code in enumerate(iata_codes):
             body = {
                 "price": {
@@ -27,11 +28,13 @@ class DataManager:
             response.raise_for_status()
 
     def get_data(self):
+        """Get sheet information"""
         response = requests.get(url=SHEETY_ENDPOINT)
         response.raise_for_status()
         self.data = response.json()["prices"]
 
     def update_prices(self, flights: list):
+        """Update the lowest prices in the sheet"""
         self.new_flights.clear()
         self.prices_updated = False
         self.get_data()
