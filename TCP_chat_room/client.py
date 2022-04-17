@@ -4,8 +4,22 @@ from threading import Thread
 import socket
 from sys import argv
 
+if len(argv) != 2:
+    print("Usage: ./client.py [PORT]")
+    exit(1)
+
+HOST = "127.0.0.1"  # localhost
+try:
+    PORT = int(argv[1])     # free port
+    if PORT < 0 or str(PORT) != argv[1]:
+        raise ValueError
+except ValueError:
+    print("PORT must be a whole, positive number")
+    exit(1)
+
 client = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
-client.connect(("127.0.0.1", int(argv[1])))    # server connection
+client.connect((HOST, PORT))    # server connection
+
 nickname: str = "unknown"
 
 
@@ -20,7 +34,7 @@ def receive():
                 client.send(nickname.encode("ascii"))
             else:
                 print(msg)
-        except Exception:
+        except:
             print("An ERROR occurred")
             client.close()
             break
