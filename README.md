@@ -1,2 +1,9 @@
 # Python-Training-projects-and-games
-Projects and games that i made in path to mastering Python
+Including:
+- TCP chat room
+- Selenium bots
+- BS4 web scrapers
+- CLI utilities
+- Utilities with GUI
+- API scripts
+- and many more
